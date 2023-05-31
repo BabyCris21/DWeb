@@ -3,67 +3,67 @@ package entidades;
 import java.util.Date;
 
 public class Cuenta {
-    int Id;
-    int IdUsuario;
-    int Activo;
-    String Nombre;
-    String Descripcion;
-    Date fecha_creacion;
+    int id;
+    int idUsuario;
+    String mombre;
+    String descripcion;
+    int activo;
+    String fechaCreacion;
 
-    public Cuenta(int id, int idUsuario, int activo, String nombre, String descripcion, Date fecha_creacion) {
-        Id = id;
-        IdUsuario = idUsuario;
-        Activo = activo;
-        Nombre = nombre;
-        Descripcion = descripcion;
-        this.fecha_creacion = fecha_creacion;
+    public Cuenta(int id, int idUsuario, String mombre, String descripcion, int activo, String fechaCreacion) {
+        this.id = id;
+        this.idUsuario = idUsuario;
+        this.mombre = mombre;
+        this.descripcion = descripcion;
+        this.activo = activo;
+        this.fechaCreacion = fechaCreacion;
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
     public int getIdUsuario() {
-        return IdUsuario;
+        return idUsuario;
     }
 
     public void setIdUsuario(int idUsuario) {
-        IdUsuario = idUsuario;
+        this.idUsuario = idUsuario;
     }
 
-    public int getActivo() {
-        return Activo;
+    public String getMombre() {
+        return mombre;
     }
 
-    public void setActivo(int activo) {
-        Activo = activo;
-    }
-
-    public String getNombre() {
-        return Nombre;
-    }
-
-    public void setNombre(String nombre) {
-        Nombre = nombre;
+    public void setMombre(String mombre) {
+        this.mombre = mombre;
     }
 
     public String getDescripcion() {
-        return Descripcion;
+        return descripcion;
     }
 
     public void setDescripcion(String descripcion) {
-        Descripcion = descripcion;
+        this.descripcion = descripcion;
     }
 
-    public Date getFecha_creacion() {
-        return fecha_creacion;
+    public int getActivo() {
+        return activo;
     }
 
-    public void setFecha_creacion(Date fecha_creacion) {
-        this.fecha_creacion = fecha_creacion;
+    public void setActivo(int activo) {
+        this.activo = activo;
+    }
+
+    public String getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(String fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
 }

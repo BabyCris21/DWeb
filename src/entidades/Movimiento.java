@@ -1,72 +1,78 @@
 package entidades;
 
-import java.util.Date;
 public class Movimiento {
-    int Id;
-    int IdCuenta;
-    int IdMovimientoTipo;
-    int IdMovimientoCategoria;
-    int Activo;
-    String Descripción;
-    Float Monto;
-    Date FechaCreacion;
-    public Movimiento(int id, int idCuenta, int idMovimientoTipo, int idMovimientoCategoria, int activo, String descripción,
-                      Float monto, Date fechaCreacion) {
-        Id = id;
-        IdCuenta = idCuenta;
-        IdMovimientoTipo = idMovimientoTipo;
-        IdMovimientoCategoria = idMovimientoCategoria;
-        Activo = activo;
-        Descripción = descripción;
-        Monto = monto;
-        FechaCreacion = fechaCreacion;
+
+    int id;
+    int idusuarioCuenta;
+    int idmovimientoTipo;
+    int idmovimientoCategoria;
+    String nombre;
+    int activo;
+    String fechaCreacion;
+
+    public Movimiento(int id, int idusuarioCuenta, int idmovimientoTipo, int idmovimientoCategoria, String nombre, int activo, String fechaCreacion) {
+        this.id = id;
+        this.idusuarioCuenta = idusuarioCuenta;
+        this.idmovimientoTipo = idmovimientoTipo;
+        this.idmovimientoCategoria = idmovimientoCategoria;
+        this.nombre = nombre;
+        this.activo = activo;
+        this.fechaCreacion = fechaCreacion;
     }
+
     public int getId() {
-        return Id;
+        return id;
     }
+
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
-    public int getIdCuenta() {
-        return IdCuenta;
+
+    public int getIdusuarioCuenta() {
+        return idusuarioCuenta;
     }
-    public void setIdCuenta(int idCuenta) {
-        IdCuenta = idCuenta;
+
+    public void setIdusuarioCuenta(int idusuarioCuenta) {
+        this.idusuarioCuenta = idusuarioCuenta;
     }
-    public int getIdMovimientoTipo() {
-        return IdMovimientoTipo;
+
+    public int getIdmovimientoTipo() {
+        return idmovimientoTipo;
     }
-    public void setIdMovimientoTipo(int idMovimientoTipo) {
-        IdMovimientoTipo = idMovimientoTipo;
+
+    public void setIdmovimientoTipo(int idmovimientoTipo) {
+        this.idmovimientoTipo = idmovimientoTipo;
     }
-    public int getIdMovimientoCategoria() {
-        return IdMovimientoCategoria;
+
+    public int getIdmovimientoCategoria() {
+        return idmovimientoCategoria;
     }
-    public void setIdMovimientoCategoria(int idMovimientoCategoria) {
-        IdMovimientoCategoria = idMovimientoCategoria;
+
+    public void setIdmovimientoCategoria(int idmovimientoCategoria) {
+        this.idmovimientoCategoria = idmovimientoCategoria;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public int getActivo() {
-        return Activo;
+        return activo;
     }
+
     public void setActivo(int activo) {
-        Activo = activo;
+        this.activo = activo;
     }
-    public String getDescripción() {
-        return Descripción;
+
+    public String getFechaCreacion() {
+        return fechaCreacion;
     }
-    public void setDescripción(String descripción) {
-        Descripción = descripción;
-    }
-    public Float getMonto() {
-        return Monto;
-    }
-    public void setMonto(Float monto) {
-        Monto = monto;
-    }
-    public Date getFechaCreacion() {
-        return FechaCreacion;
-    }
-    public void setFechaCreacion(Date fechaCreacion) {
-        FechaCreacion = fechaCreacion;
+
+    public void setFechaCreacion(String fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
 }

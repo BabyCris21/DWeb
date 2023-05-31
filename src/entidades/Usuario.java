@@ -7,7 +7,6 @@ public class Usuario {
     String Nombre;
     String Apellido;
     String telefono;
-
     String fechaCreacion;
     public Usuario(int id, int activo, String correo, String nombre, String apellido, String telefono, String fechaCreacion) {
         this.Id = id;

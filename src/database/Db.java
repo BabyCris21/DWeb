@@ -17,8 +17,8 @@ public class Db {
     private Db() {
         this.URL = "jdbc:sqlserver://localhost:1433;encrypt=true;trustServerCertificate=true;database=";
         this.BD = "proyecto_dwi;";
-        this.USER = "JDBC";
-        this.PASSWORD = "123".toCharArray();
+        this.USER = "Administrador";
+        this.PASSWORD = "Admin12345".toCharArray();
         this.cnx = null;
     }
 

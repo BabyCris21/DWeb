@@ -16,6 +16,7 @@ public class UsuarioRepo {
     private Db db;
 
         public UsuarioRepo(){
+
             this.db = Db.getInstance();
         }
 

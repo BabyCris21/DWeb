@@ -3,10 +3,12 @@ package entidades;
 public class Tipo {
     int Id;
     String Nombre;
+    int activo;
 
-    public Tipo(int id, String nombre) {
+    public Tipo(int id, String nombre, int activo) {
         this.Id = id;
         Nombre = nombre;
+        this.activo = activo;
     }
     public int getId() {
         return Id;
@@ -22,5 +24,12 @@ public class Tipo {
 
     public void setNombre(String nombre) {
         Nombre = nombre;
+    }
+
+    public int getActivo() {
+        return activo;
+    }
+    public void setActivo(int activo) {
+        this.activo = activo;
     }
 }

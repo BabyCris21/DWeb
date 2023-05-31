@@ -6,8 +6,8 @@ public class Categoria {
     int IdUsuario;
     int Activo;
     String Nombre;
-    Date fechaRegistro;
-    public Categoria(int id, int idUsuario, int activo, String nombre, Date fechaRegistro) {
+    String fechaRegistro;
+    public Categoria(int id, int idUsuario, int activo, String nombre, String fechaRegistro) {
         Id = id;
         IdUsuario = idUsuario;
         Activo = activo;
@@ -38,9 +38,12 @@ public class Categoria {
     public void setNombre(String nombre) {
         Nombre = nombre;
     }
-    public Date getFechaRegistro() {
+
+    public String getFechaCreacion() {
         return fechaRegistro;
     }
-    public void setFechaRegistro(Date fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;}
+
+    public void setFechaCreacion(String fechaCreacion) {
+        this.fechaRegistro = fechaCreacion;
+    }
 }

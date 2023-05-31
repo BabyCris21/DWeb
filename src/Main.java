@@ -1,6 +1,7 @@
 import entidades.Usuario;
 import repositorios.UsuarioRepo;
 
+import java.sql.*;
 import java.time.LocalTime;
 
 public class Main {
