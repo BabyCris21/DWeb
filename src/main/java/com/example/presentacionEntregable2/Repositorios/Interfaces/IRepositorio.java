@@ -6,6 +6,6 @@ public interface IRepositorio<T> {
     public List<T> Listar();
     public T ObtenerPorId(int id);
     public void Crear(T objeto);
-    public void Eliminar(T objeto);
+    public T Eliminar(T objeto);
     public void Actualizar(T objeto);
 }
