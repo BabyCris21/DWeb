@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <section th:each="usuario: ${usuarios}">
+      <h2 th:text="${'Id: ' + usuario.Id}"></h2>
+      <p th:text="${'Nombre completo: ' + usuario.Nombre + ' ' + usuario.Apellido}">Usuario: </p>
+      <p th:text="${'Correo ' +usuario.Correo}"></p>
+  </section>
+</body>
+</html>
