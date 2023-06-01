@@ -1,25 +1,37 @@
 package com.example.presentacionEntregable2.Repositorios;
 
+import com.example.presentacionEntregable2.Entidades.Movimiento;
 import com.example.presentacionEntregable2.Entidades.Usuario;
 import com.example.presentacionEntregable2.Repositorios.Interfaces.IRepositorio;
 import com.example.presentacionEntregable2.Util.DatabaseConnection;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class UsuarioRepositorio implements IRepositorio<Usuario> {
+
+    private Connection db;
+    public UsuarioRepositorio(){
+        try {
+            this.db = DatabaseConnection.getInstancia();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     @Override
     public List<Usuario> Listar() {
-        String statement = "SELECT id, correo, nombres, apellidos, telefono, activo, fechaCreacion  FROM Usuario;";
+        String statement = "SELECT id, correo, nombres, apellidos, telefono, activo, fechaCreacion  FROM usuario;";
         List<Usuario> usuarios = new ArrayList<>();
         try {
-            PreparedStatement ps = DatabaseConnection.getInstancia().prepareStatement(statement);
+            PreparedStatement ps = db.prepareStatement(statement);
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
+            while(rs.next()) {
                 int id = rs.getInt("id");
                 String correo = rs.getString("correo");
                 String nombre = rs.getString("nombres");
@@ -32,6 +44,7 @@ public class UsuarioRepositorio implements IRepositorio<Usuario> {
             rs.close();
             ps.close();
         } catch (SQLException e) {
+            Logger.getLogger(UsuarioRepositorio.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             DatabaseConnection.cerrarConexion();
         }
@@ -39,21 +52,93 @@ public class UsuarioRepositorio implements IRepositorio<Usuario> {
     }
     @Override
     public Usuario ObtenerPorId(int id) {
-        return null;
+
+        Usuario usuario = null;
+        String procedure = "SELECT id, correo, nombres, apellidos, telefono, activo, fechaCreacion  FROM usuario WHERE id = ?;";
+        try {
+            PreparedStatement ps = db.prepareStatement(procedure);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                int idcat = rs.getInt("id");
+                String correo = rs.getNString("correo");
+                String nombres = rs.getString("nombres");
+                String apellidos = rs.getString("apellidos");
+                String telefono = rs.getNString("telefono");
+                int activo = rs.getInt("activo");
+                String fechaCreacion = rs.getString("fechaCreacion");
+                usuario = new Usuario(idcat, activo, correo, nombres, apellidos, telefono, fechaCreacion );
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioRepositorio.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            DatabaseConnection.cerrarConexion();
+        }
+        return usuario;
     }
 
     @Override
     public void Crear(Usuario objeto) {
-
+        String procedure = "INSERT INTO usuario (id, correo, nombres, apellidos, telefono, activo, fechaCreacion) VALUES (?,?,?,?,?,?,?);";
+        try {
+            PreparedStatement cs = db.prepareStatement(procedure);
+            cs.setInt(1, objeto.getId());
+            cs.setString(2, objeto.getCorreo());
+            cs.setString(3, objeto.getNombre());
+            cs.setString(4, objeto.getApellido());
+            cs.setString(5, objeto.getTelefono());
+            cs.setInt(6, objeto.getActivo());
+            cs.setString(7, objeto.getFechaCreacion());
+            ResultSet rs = cs.executeQuery();
+            rs.close();
+            cs.close();
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioRepositorio.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            DatabaseConnection.cerrarConexion();
+        }
     }
 
     @Override
-    public void Eliminar(Usuario objeto) {
-
+    public Usuario Eliminar(Usuario objeto) {
+        String procedure = "DELETE FROM usuario WHERE id=?;";
+        try {
+            PreparedStatement cs = db.prepareStatement(procedure);
+            cs.setInt(1, objeto.getId());
+            ResultSet rs = cs.executeQuery();
+            rs.close();
+            cs.close();
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioRepositorio.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            DatabaseConnection.cerrarConexion();
+        }
+        return objeto;
     }
 
     @Override
     public void Actualizar(Usuario objeto) {
+
+        String procedure = "UPDATE usuario_cuenta_movimiento Set column1 = ?, column2 = ?, column3 = ?, column4 = ?, column5 = ?, column6 = ?, column7 = ?   WHERE id = ?";
+        try {
+            PreparedStatement cs = db.prepareStatement(procedure);
+            cs.setInt(1, objeto.getId());
+            cs.setInt(2, objeto.getIdusuarioCuenta());
+            cs.setInt(3, objeto.getIdmovimientoTipo());
+            cs.setInt(4, objeto.getIdmovimientoCategoria());
+            cs.setString(5, objeto.getNombre());
+            cs.setInt(6, objeto.getActivo());
+            cs.setString(7, objeto.getFechaCreacion());
+            ResultSet rs = cs.executeQuery();
+            rs.close();
+            cs.close();
+        } catch (SQLException e) {
+            Logger.getLogger(MovimientoRepositorio.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            DatabaseConnection.cerrarConexion();
+
 
     }
 }

@@ -91,8 +91,8 @@ public class MovimientoRepositorio implements IRepositorio<Movimiento> {
             cs.setInt(3, objeto.getIdmovimientoTipo());
             cs.setInt(4, objeto.getIdmovimientoCategoria());
             cs.setString(5, objeto.getNombre());
-            cs.setInt(4, objeto.getActivo());
-            cs.setString(5, objeto.getFechaCreacion());
+            cs.setInt(6, objeto.getActivo());
+            cs.setString(7, objeto.getFechaCreacion());
             ResultSet rs = cs.executeQuery();
             rs.close();
             cs.close();
@@ -125,7 +125,25 @@ public class MovimientoRepositorio implements IRepositorio<Movimiento> {
     @Override
     public void Actualizar(Movimiento objeto) {
 
-            
+        String procedure = "UPDATE usuario_cuenta_movimiento Set column1 = ?, column2 = ?, column3 = ?, column4 = ?, column5 = ?, column6 = ?, column7 = ?   WHERE id = ?";
+        try {
+            PreparedStatement cs = db.prepareStatement(procedure);
+            cs.setInt(1, objeto.getId());
+            cs.setInt(2, objeto.getIdusuarioCuenta());
+            cs.setInt(3, objeto.getIdmovimientoTipo());
+            cs.setInt(4, objeto.getIdmovimientoCategoria());
+            cs.setString(5, objeto.getNombre());
+            cs.setInt(6, objeto.getActivo());
+            cs.setString(7, objeto.getFechaCreacion());
+            ResultSet rs = cs.executeQuery();
+            rs.close();
+        } catch (SQLException e) {
+            Logger.getLogger(MovimientoRepositorio.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            DatabaseConnection.cerrarConexion();
+
+
+        }
 
     }
 }
