@@ -32,7 +32,6 @@ public class UsuarioRepositorio implements IRepositorio<Usuario> {
             rs.close();
             ps.close();
         } catch (SQLException e) {
-            var x=e;
         } finally {
             DatabaseConnection.cerrarConexion();
         }
