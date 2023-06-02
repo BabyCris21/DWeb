@@ -13,8 +13,15 @@ public class UsuarioController {
     UsuarioController(){
         _usuarioRepositorio = new UsuarioRepositorio();
     }
-    @GetMapping("/")
-    public String home(Model model) {
+    @GetMapping("/usuarios")
+    public String listar(Model model) {
+        var usuarios = _usuarioRepositorio.Listar();
+        model.addAttribute("usuarios", usuarios);
+        return "usuario.lista";
+    }
+    @GetMapping("/crearUsuario")
+    public String crearUsuario(Model model) {
+        _usuarioRepositorio.Crear(new Usuario("cc301220032@gmail.com","jesus","contreras","918521619"));
         var usuarios = _usuarioRepositorio.Listar();
         model.addAttribute("usuarios", usuarios);
         return "usuario.lista";

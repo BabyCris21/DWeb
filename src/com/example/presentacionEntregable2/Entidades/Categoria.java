@@ -18,6 +18,11 @@ public class Categoria {
         this.fechaRegistro = fechaRegistro;
     }
 
+    public Categoria(int idUsuario, String nombre) {
+        IdUsuario = idUsuario;
+        Nombre = nombre;
+    }
+
     public int getId() {
         return Id;
     }

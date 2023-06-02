@@ -1,6 +1,5 @@
 package com.example.presentacionEntregable2.Repositorios;
 
-import com.example.presentacionEntregable2.Entidades.Categoria;
 import com.example.presentacionEntregable2.Entidades.Movimiento;
 import com.example.presentacionEntregable2.Repositorios.Interfaces.IRepositorio;
 import com.example.presentacionEntregable2.Util.DatabaseConnection;

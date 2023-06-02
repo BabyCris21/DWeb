@@ -1,6 +1,5 @@
 package com.example.presentacionEntregable2.Repositorios;
 
-import com.example.presentacionEntregable2.Entidades.Movimiento;
 import com.example.presentacionEntregable2.Entidades.Usuario;
 import com.example.presentacionEntregable2.Repositorios.Interfaces.IRepositorio;
 import com.example.presentacionEntregable2.Util.DatabaseConnection;
@@ -28,9 +27,11 @@ public class UsuarioRepositorio implements IRepositorio<Usuario> {
     public List<Usuario> Listar() {
         String statement = "SELECT id, correo, nombres, apellidos, telefono, activo, fechaCreacion  FROM usuario;";
         List<Usuario> usuarios = new ArrayList<>();
+        PreparedStatement ps;
+        ResultSet rs;
         try {
-            PreparedStatement ps = db.prepareStatement(statement);
-            ResultSet rs = ps.executeQuery();
+            ps = db.prepareStatement(statement);
+            rs = ps.executeQuery();
             while(rs.next()) {
                 int id = rs.getInt("id");
                 String correo = rs.getString("correo");
@@ -46,7 +47,8 @@ public class UsuarioRepositorio implements IRepositorio<Usuario> {
         } catch (SQLException e) {
             Logger.getLogger(UsuarioRepositorio.class.getName()).log(Level.SEVERE, null, e);
         } finally {
-            DatabaseConnection.cerrarConexion();
+            rs = null;
+            ps = null;
         }
         return usuarios;
     }
@@ -81,16 +83,13 @@ public class UsuarioRepositorio implements IRepositorio<Usuario> {
 
     @Override
     public void Crear(Usuario objeto) {
-        String procedure = "INSERT INTO usuario (id, correo, nombres, apellidos, telefono, activo, fechaCreacion) VALUES (?,?,?,?,?,?,?);";
+        String procedure = "INSERT INTO usuario (correo, nombres, apellidos, telefono) VALUES (?,?,?,?);";
         try {
             PreparedStatement cs = db.prepareStatement(procedure);
-            cs.setInt(1, objeto.getId());
-            cs.setString(2, objeto.getCorreo());
-            cs.setString(3, objeto.getNombre());
-            cs.setString(4, objeto.getApellido());
-            cs.setString(5, objeto.getTelefono());
-            cs.setInt(6, objeto.getActivo());
-            cs.setString(7, objeto.getFechaCreacion());
+            cs.setString(1, objeto.getCorreo());
+            cs.setString(2, objeto.getNombre());
+            cs.setString(3, objeto.getApellido());
+            cs.setString(4, objeto.getTelefono());
             ResultSet rs = cs.executeQuery();
             rs.close();
             cs.close();
@@ -120,8 +119,8 @@ public class UsuarioRepositorio implements IRepositorio<Usuario> {
 
     @Override
     public void Actualizar(Usuario objeto) {
-
-        String procedure = "UPDATE usuario Set column1 = ?, column2 = ?, column3 = ?, column4 = ?, column5 = ?, column6 = ?, column7 = ?   WHERE id = ?";
+        /*String procedure = "UPDATE usuario Set correo   WHERE id = ?";
+>>>>>>> 818c8e3330642083de68481d50cfc722f384ac6b
         try {
             PreparedStatement cs = db.prepareStatement(procedure);
             cs.setInt(1, objeto.getId());
@@ -138,6 +137,9 @@ public class UsuarioRepositorio implements IRepositorio<Usuario> {
             Logger.getLogger(UsuarioRepositorio.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             DatabaseConnection.cerrarConexion();
+<<<<<<< HEAD
         }
+=======
+        }*/
     }
 }
