@@ -128,8 +128,6 @@ public class CategoriaRepositorio implements IRepositorio<Categoria> {
                 Logger.getLogger(CategoriaRepositorio.class.getName()).log(Level.SEVERE, null, e);
             } finally {
                 DatabaseConnection.cerrarConexion();
-
-
             }
     }
 }

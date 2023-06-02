@@ -137,6 +137,7 @@ public class MovimientoRepositorio implements IRepositorio<Movimiento> {
             cs.setString(7, objeto.getFechaCreacion());
             ResultSet rs = cs.executeQuery();
             rs.close();
+            cs.close();
         } catch (SQLException e) {
             Logger.getLogger(MovimientoRepositorio.class.getName()).log(Level.SEVERE, null, e);
         } finally {

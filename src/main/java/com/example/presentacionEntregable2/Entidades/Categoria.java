@@ -9,7 +9,8 @@ public class Categoria {
     String Nombre;
     String fechaRegistro;
 
-    public Categoria(int id, int idUsuario, int activo, String nombre, String fechaRegistro) {
+    public Categoria(
+            id, int idUsuario, int activo, String nombre, String fechaRegistro) {
         Id = id;
         IdUsuario = idUsuario;
         Activo = activo;
