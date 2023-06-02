@@ -74,15 +74,11 @@ public class CategoriaRepositorio implements IRepositorio<Categoria> {
     }
     @Override
     public void Crear(Categoria objeto) {
-
-            String procedure = "INSERT INTO usuario_movimiento_categoria (id, idusuario, nombre, activo, fechaCreacion) VALUES (?,?,?,?,?);";
+            String procedure = "INSERT INTO usuario_movimiento_categoria (idusuario, nombre) VALUES (?,?);";
         try {
             PreparedStatement cs = db.prepareStatement(procedure);
-            cs.setInt(1, objeto.getId());
-            cs.setInt(2, objeto.getIdUsuario());
-            cs.setString(3, objeto.getNombre());
-            cs.setInt(4, objeto.getActivo());
-            cs.setString(5, objeto.getFechaCreacion());
+            cs.setInt(1, objeto.getIdUsuario());
+            cs.setString(2, objeto.getNombre());
             ResultSet rs = cs.executeQuery();
             rs.close();
             cs.close();

@@ -19,6 +19,13 @@ public class Usuario {
         this.fechaCreacion = fechaCreacion;
     }
 
+    public Usuario(String correo, String nombre, String apellido, String telefono) {
+        Correo = correo;
+        Nombre = nombre;
+        Apellido = apellido;
+        this.telefono = telefono;
+    }
+
     public int getId() {
         return Id;
     }
