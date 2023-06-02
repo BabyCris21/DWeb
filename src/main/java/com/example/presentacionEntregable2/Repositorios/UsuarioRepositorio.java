@@ -26,7 +26,7 @@ public class UsuarioRepositorio implements IRepositorio<Usuario> {
     }
     @Override
     public List<Usuario> Listar() {
-        String statement = "SELECT id, correo, nombres, apellidos, telefono, activo, fechaCreacion  FROM usuario;";
+        String statement = "SELECT id, correo, nombres, apellidos, telefono, activo, fechaCreacion  FROM usuario where activo=1;";
         List<Usuario> usuarios = new ArrayList<>();
         PreparedStatement ps;
         ResultSet rs;
@@ -57,7 +57,7 @@ public class UsuarioRepositorio implements IRepositorio<Usuario> {
     public Usuario ObtenerPorId(int id) {
 
         Usuario usuario = null;
-        String procedure = "SELECT id, correo, nombres, apellidos, telefono, activo, fechaCreacion  FROM usuario WHERE id = ?;";
+        String procedure = "SELECT id, correo, nombres, apellidos, telefono, activo, fechaCreacion  FROM usuario WHERE id = ? and activo=1;";
         try {
             PreparedStatement ps = db.prepareStatement(procedure);
             ps.setInt(1, id);
@@ -103,12 +103,11 @@ public class UsuarioRepositorio implements IRepositorio<Usuario> {
 
     @Override
     public Usuario Eliminar(Usuario objeto) {
-        String procedure = "DELETE FROM usuario WHERE id=?;";
+        String procedure = "UPDATE usuario set activo=0 WHERE id=?;";
         try {
             PreparedStatement cs = db.prepareStatement(procedure);
             cs.setInt(1, objeto.getId());
-            ResultSet rs = cs.executeQuery();
-            rs.close();
+            cs.executeQuery();
             cs.close();
         } catch (SQLException e) {
             Logger.getLogger(UsuarioRepositorio.class.getName()).log(Level.SEVERE, null, e);

@@ -23,7 +23,7 @@ public class CategoriaRepositorio implements IRepositorio<Categoria> {
     }
     @Override
     public List<Categoria> Listar() {
-        String statement = "SELECT id, idusuario, nombre, activo, fechaCreacion FROM usuario_movimiento_categoria;";
+        String statement = "SELECT id, idusuario, nombre, activo, fechaCreacion FROM usuario_movimiento_categoria where activo=1;";
         List<Categoria> categorias = new ArrayList<>();
         try {
             PreparedStatement ps = db.prepareStatement(statement);
@@ -50,7 +50,7 @@ public class CategoriaRepositorio implements IRepositorio<Categoria> {
     @Override
     public Categoria ObtenerPorId(int id) {
         Categoria categoria = null;
-        String procedure = "SELECT id, idusuario, nombre, activo, fechaCreacion FROM usuario_movimiento_categoria WHERE id = ?;";
+        String procedure = "SELECT id, idusuario, nombre, activo, fechaCreacion FROM usuario_movimiento_categoria WHERE id = ? and activo=1;";
         try {
             PreparedStatement ps = db.prepareStatement(procedure);
             ps.setInt(1, id);
@@ -92,12 +92,11 @@ public class CategoriaRepositorio implements IRepositorio<Categoria> {
     @Override
     public Categoria Eliminar(Categoria objeto){
 
-            String procedure = "DELETE FROM usuario_movimiento_categoria WHERE id=?;";
+            String procedure = "UPDATE usuario_movimiento_categoria SET activo=0 where id=?;";
             try {
                 PreparedStatement cs = db.prepareStatement(procedure);
                 cs.setInt(1, objeto.getId());
-                ResultSet rs = cs.executeQuery();
-                rs.close();
+                cs.executeQuery();
                 cs.close();
             } catch (SQLException e) {
                 Logger.getLogger(CategoriaRepositorio.class.getName()).log(Level.SEVERE, null, e);
@@ -109,14 +108,11 @@ public class CategoriaRepositorio implements IRepositorio<Categoria> {
 
     @Override
     public void Actualizar(Categoria objeto) {
-            String procedure = "UPDATE usuario_movimiento_categoria Set column1 = ?, column2 = ?, column3 = ?, column4 = ?, column5 = ?  WHERE id = ?";
+            String procedure = "UPDATE usuario_movimiento_categoria Set nombre=?  WHERE id = ?";
             try {
                 PreparedStatement cs = db.prepareStatement(procedure);
-                cs.setInt(1, objeto.getId());
-                cs.setInt(2, objeto.getIdUsuario());
-                cs.setString(3, objeto.getNombre());
-                cs.setInt(4, objeto.getActivo());
-                cs.setString(5, objeto.getFechaCreacion());
+                cs.setString(1, objeto.getNombre());
+                cs.setInt(2, objeto.getId());
                 ResultSet rs = cs.executeQuery();
                 rs.close();
                 cs.close();
