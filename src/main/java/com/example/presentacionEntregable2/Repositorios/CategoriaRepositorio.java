@@ -12,7 +12,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CategoriaRepositorio implements IRepositorio<Categoria> {
-
     private final Connection db;
     public CategoriaRepositorio(){
         try {
@@ -79,8 +78,7 @@ public class CategoriaRepositorio implements IRepositorio<Categoria> {
             PreparedStatement cs = db.prepareStatement(procedure);
             cs.setInt(1, objeto.getIdUsuario());
             cs.setString(2, objeto.getNombre());
-            ResultSet rs = cs.executeQuery();
-            rs.close();
+            cs.execute();
             cs.close();
         } catch (SQLException e) {
             Logger.getLogger(CategoriaRepositorio.class.getName()).log(Level.SEVERE, null, e);
@@ -113,15 +111,12 @@ public class CategoriaRepositorio implements IRepositorio<Categoria> {
                 PreparedStatement cs = db.prepareStatement(procedure);
                 cs.setString(1, objeto.getNombre());
                 cs.setInt(2, objeto.getId());
-                ResultSet rs = cs.executeQuery();
-                rs.close();
+                cs.execute();
                 cs.close();
             } catch (SQLException e) {
                 Logger.getLogger(CategoriaRepositorio.class.getName()).log(Level.SEVERE, null, e);
             } finally {
                 DatabaseConnection.cerrarConexion();
-
-
             }
     }
 }

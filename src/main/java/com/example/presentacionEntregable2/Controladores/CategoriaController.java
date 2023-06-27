@@ -24,7 +24,7 @@ public class CategoriaController{
 
     @GetMapping("/crearCategoria")
     public String crear(Model model){
-        _repositorio.Crear(new Categoria(1, "Categoria de prueba"));
+        _repositorio.Crear(new Categoria(1, "Exposicion"));
         var categorias = _repositorio.Listar();
         model.addAttribute("categorias", categorias);
         return "categoria.lista";

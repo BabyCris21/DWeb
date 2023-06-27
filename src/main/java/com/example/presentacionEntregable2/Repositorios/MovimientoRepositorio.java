@@ -1,6 +1,5 @@
 package com.example.presentacionEntregable2.Repositorios;
 
-import com.example.presentacionEntregable2.Entidades.Categoria;
 import com.example.presentacionEntregable2.Entidades.Movimiento;
 import com.example.presentacionEntregable2.Repositorios.Interfaces.IRepositorio;
 import com.example.presentacionEntregable2.Util.DatabaseConnection;
@@ -93,8 +92,7 @@ public class MovimientoRepositorio implements IRepositorio<Movimiento> {
             cs.setString(5, objeto.getNombre());
             cs.setInt(6, objeto.getActivo());
             cs.setString(7, objeto.getFechaCreacion());
-            ResultSet rs = cs.executeQuery();
-            rs.close();
+            cs.execute();
             cs.close();
         } catch (SQLException e) {
             Logger.getLogger(MovimientoRepositorio.class.getName()).log(Level.SEVERE, null, e);
@@ -106,12 +104,11 @@ public class MovimientoRepositorio implements IRepositorio<Movimiento> {
     @Override
     public Movimiento Eliminar(Movimiento objeto) {
 
-        String procedure = "DELETE FROM usuario_cuenta_movimiento WHERE id=?;";
+        String procedure = "UPDATE FROM usuario_cuenta_movimiento Set activo = 0 WHERE id=?;";
         try {
             PreparedStatement cs = db.prepareStatement(procedure);
             cs.setInt(1, objeto.getId());
-            ResultSet rs = cs.executeQuery();
-            rs.close();
+            cs.execute();
             cs.close();
         } catch (SQLException e) {
             Logger.getLogger(MovimientoRepositorio.class.getName()).log(Level.SEVERE, null, e);
@@ -125,24 +122,19 @@ public class MovimientoRepositorio implements IRepositorio<Movimiento> {
     @Override
     public void Actualizar(Movimiento objeto) {
 
-        String procedure = "UPDATE usuario_cuenta_movimiento Set column1 = ?, column2 = ?, column3 = ?, column4 = ?, column5 = ?, column6 = ?, column7 = ?   WHERE id = ?";
+        String procedure = "UPDATE usuario_cuenta_movimiento Set idusuariocuenta = ?, idmovimientotipo  = ?, idmovmimientocategoria = ?, nombre = ?, WHERE id = ?";
         try {
             PreparedStatement cs = db.prepareStatement(procedure);
-            cs.setInt(1, objeto.getId());
             cs.setInt(2, objeto.getIdusuarioCuenta());
             cs.setInt(3, objeto.getIdmovimientoTipo());
             cs.setInt(4, objeto.getIdmovimientoCategoria());
             cs.setString(5, objeto.getNombre());
-            cs.setInt(6, objeto.getActivo());
-            cs.setString(7, objeto.getFechaCreacion());
-            ResultSet rs = cs.executeQuery();
-            rs.close();
+            cs.execute();
+            cs.close();
         } catch (SQLException e) {
             Logger.getLogger(MovimientoRepositorio.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             DatabaseConnection.cerrarConexion();
-
-
         }
 
     }

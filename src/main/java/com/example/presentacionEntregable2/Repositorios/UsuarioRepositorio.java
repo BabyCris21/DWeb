@@ -91,8 +91,7 @@ public class UsuarioRepositorio implements IRepositorio<Usuario> {
             cs.setString(2, objeto.getNombre());
             cs.setString(3, objeto.getApellido());
             cs.setString(4, objeto.getTelefono());
-            ResultSet rs = cs.executeQuery();
-            rs.close();
+            cs.execute();
             cs.close();
         } catch (SQLException e) {
             Logger.getLogger(UsuarioRepositorio.class.getName()).log(Level.SEVERE, null, e);

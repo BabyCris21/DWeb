@@ -20,6 +20,14 @@ public class Movimiento {
         this.fechaCreacion = fechaCreacion;
     }
 
+    public Movimiento(int id, int idusuarioCuenta, int idmovimientoTipo, int idmovimientoCategoria, String nombre) {
+        this.id = id;
+        this.idusuarioCuenta = idusuarioCuenta;
+        this.idmovimientoTipo = idmovimientoTipo;
+        this.idmovimientoCategoria = idmovimientoCategoria;
+        this.nombre = nombre;
+    }
+
     public int getId() {
         return id;
     }

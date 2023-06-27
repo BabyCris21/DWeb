@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+<h1>Categorias:</h1>
 <section th:each="categoria: ${categorias}">
     <h2 th:text="${'Id: ' + categoria.Id}"></h2>
     <p th:text="${'Nombre: ' + categoria.Nombre}"></p>
