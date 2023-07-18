@@ -9,6 +9,16 @@ public class Usuario {
     String telefono;
     String fechaCreacion;
 
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    String contrasena;
+    public Usuario(){};
     public Usuario(int id, int activo, String correo, String nombre, String apellido, String telefono, String fechaCreacion) {
         this.Id = id;
         this.Activo = activo;

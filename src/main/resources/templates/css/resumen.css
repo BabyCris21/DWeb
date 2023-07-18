@@ -1,0 +1,147 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    background-color: #cff8cc;
+  }
+  header {
+    background-color:  #39a831;
+    padding: 40px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  
+  .header-left {
+    text-align: left;
+  }
+  
+  .header-right {
+    text-align: right;
+  }
+  
+  header span {
+    font-weight: bold;
+    font-size: 24px;
+  }
+  
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 30px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  nav ul li {
+    flex-grow: 1;
+    margin: 0 10px;
+  }
+  
+  nav ul li a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 20px;
+    background-color: #fff;
+    font-size: 25px;
+  }
+  
+  nav ul li a:hover {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  
+  section { 
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  
+  h2 {
+    margin-top: 0;
+    text-align: center;
+  }
+  
+  .options {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .options a {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    color: #333;
+    text-decoration: none;
+    margin-right: 10px;
+    background-color: #fff;
+  }
+  
+  .options a:hover {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  nav ul li a.active {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .balance {
+    text-align: center; 
+    margin-bottom: 20px;
+  }
+  
+  .balance h3 {
+    margin: 0;
+  }
+  
+  .balance p {
+    font-size: 24px;
+    margin: 5px 0;
+  }
+  
+  .report {
+    text-align: center;
+  }
+  
+  .report a {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .report a:hover {
+    background-color: #555;
+  }
+  

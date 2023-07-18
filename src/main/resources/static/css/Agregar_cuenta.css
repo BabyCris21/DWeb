@@ -1,0 +1,151 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    background-color:#cff8cc;
+  }
+  
+  header {
+    background-color:  #39a831;
+    padding: 40px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+   
+  section.formulario {
+    background-color: #fff;
+    padding: 80px;
+    border-radius: 60px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+  }
+  h2 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+  
+  .button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+  }
+  
+  input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+  }
+  
+  button {
+    padding: 20px 20px;
+    background-color: #ff6f00;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 20px;
+  }
+  
+  button a{
+    color: #333;
+    font: bold 20px arial;
+    text-decoration: none;
+  }
+  
+  button a:hover{
+    color: #fff;
+  }
+  
+  button:hover {
+    background-color: #ff8f00;
+  }
+  
+  
+  .header-left {
+    text-align: left;
+  }
+  
+  .header-right {
+    text-align: right;
+  }
+  
+  header span {
+    font-weight: bold;
+    font-size: 24px;
+  }
+  
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 30px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  nav ul li {
+    flex-grow: 1;
+    margin: 0 10px;
+  }
+  
+  nav ul li a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 20px;
+    background-color: #fff;
+    font-size: 25px;
+  }
+  
+  nav ul li a:hover {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  nav ul li a.active {
+    background-color: #333;
+    color: #fff;
+  }
+  

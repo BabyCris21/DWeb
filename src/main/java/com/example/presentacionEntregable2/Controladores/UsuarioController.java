@@ -26,4 +26,11 @@ public class UsuarioController {
         model.addAttribute("usuarios", usuarios);
         return "usuario.lista";
     }
+
+    @GetMapping("/iniciosesion")
+    public String obtenerPaginaInicioSesion(Model model){
+        var usuario = new Usuario();
+        model.addAttribute("usuario", usuario);
+        return "index";
+    }
 }
