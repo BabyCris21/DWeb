@@ -27,7 +27,7 @@ public class CategoriaController{
 
     @GetMapping("/crearCategoria")
     public String crear(Model model){
-        _repositorio.Crear(new Categoria(1, "Exposicion"));
+        _repositorio.Crear(new Categoria(1, 2,1,"A","2003-11-21"));
         var categorias = _repositorio.Listar();
         model.addAttribute("categorias", categorias);
         return "categoria.lista";
@@ -36,7 +36,9 @@ public class CategoriaController{
     @PostMapping("/eliminarCategoria")
     public String eliminar(@RequestParam int id, Model model) {
         Categoria categoria = _repositorio.ObtenerPorId(id);
-        _repositorio.Eliminar(categoria);
+        if (categoria != null) {
+            _repositorio.Eliminar(categoria);
+        }
         return "redirect:/categorias";
     }
 

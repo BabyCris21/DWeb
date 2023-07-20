@@ -3,62 +3,57 @@ package com.example.presentacionEntregable2.Entidades;
 
 
 public class Categoria {
-    int Id;
-    int IdUsuario;
-    int Activo;
-    String Nombre;
+    int id;
+    int idUsuario;
+    int activo;
+    String nombre;
     String fechaRegistro;
 
     public Categoria(int id, int idUsuario, int activo, String nombre, String fechaRegistro) {
-        Id = id;
-        IdUsuario = idUsuario;
-        Activo = activo;
-        Nombre = nombre;
+        this.id = id;
+        this.idUsuario = idUsuario;
+        this.activo = activo;
+        this.nombre = nombre;
         this.fechaRegistro = fechaRegistro;
     }
 
-    public Categoria(int idUsuario, String nombre) {
-        IdUsuario = idUsuario;
-        Nombre = nombre;
-    }
-
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
     public int getIdUsuario() {
-        return IdUsuario;
+        return idUsuario;
     }
 
     public void setIdUsuario(int idUsuario) {
-        IdUsuario = idUsuario;
+        this.idUsuario = idUsuario;
     }
 
     public int getActivo() {
-        return Activo;
+        return activo;
     }
 
     public void setActivo(int activo) {
-        Activo = activo;
+        this.activo = activo;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
-        Nombre = nombre;
+        this.nombre = nombre;
     }
 
-    public String getFechaCreacion() {
+    public String getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaCreacion(String fechaCreacion) {
-        this.fechaRegistro = fechaCreacion;
+    public void setFechaRegistro(String fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
     }
 }

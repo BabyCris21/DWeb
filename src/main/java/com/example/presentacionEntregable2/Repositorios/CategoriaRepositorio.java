@@ -80,28 +80,23 @@ public class CategoriaRepositorio implements IRepositorio<Categoria> {
             cs.setString(2, objeto.getNombre());
             cs.execute();
             cs.close();
-        } catch (SQLException e) {
-            Logger.getLogger(CategoriaRepositorio.class.getName()).log(Level.SEVERE, null, e);
-        } finally {
-            DatabaseConnection.cerrarConexion();
-        }
-    }
-
-    @Override
-    public Categoria Eliminar(Categoria objeto){
-
-            String procedure = "UPDATE usuario_movimiento_categoria SET activo=0 where id=?;";
-            try {
-                PreparedStatement cs = db.prepareStatement(procedure);
-                cs.setInt(1, objeto.getId());
-                cs.executeQuery();
-                cs.close();
             } catch (SQLException e) {
                 Logger.getLogger(CategoriaRepositorio.class.getName()).log(Level.SEVERE, null, e);
             } finally {
                 DatabaseConnection.cerrarConexion();
             }
-            return objeto;
+    }
+
+    @Override
+    public Categoria Eliminar(Categoria objeto) {
+        String procedure = "UPDATE usuario_movimiento_categoria SET activo=0 WHERE id=?;";
+        try (PreparedStatement cs = db.prepareStatement(procedure)) {
+            cs.setInt(1, objeto.getId());
+            cs.executeUpdate();
+        } catch (SQLException e) {
+            Logger.getLogger(CategoriaRepositorio.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return objeto;
     }
 
     @Override
