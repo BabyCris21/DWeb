@@ -1,7 +1,5 @@
 package com.example.presentacionEntregable2.Entidades;
 
-import java.util.Date;
-
 public class Cuenta {
     int id;
     int idUsuario;
@@ -40,7 +38,7 @@ public class Cuenta {
     }
 
     public void setMombre(String mombre) {
-        this.nombre = mombre;
+        this.nombre = nombre;
     }
 
     public String getDescripcion() {

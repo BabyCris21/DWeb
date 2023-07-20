@@ -20,10 +20,13 @@ public class DatabaseConnection {
     }
 
     public static void cerrarConexion(){
-       /* try {
-           *//* if (connection == null || connection.isClosed()) return;
-            connection.close();*//*
-        }catch (SQLException ex){}*/
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }
 

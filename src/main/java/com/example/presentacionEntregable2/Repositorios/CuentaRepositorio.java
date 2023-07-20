@@ -26,7 +26,7 @@ public class CuentaRepositorio implements IRepositorio<Cuenta> {
 
     @Override
     public List<Cuenta> Listar() {
-        String statement = "SELECT id, idusuario, nombre, activo, fechaCreacion FROM usuario_cuenta_categoria where activo=1;";
+        String statement = "SELECT id, idusuario, nombre, activo, descripcion, fechaCreacion FROM usuario_cuenta_categoria where activo=1;";
         List<Cuenta> cuentas = new ArrayList<>();
         try {
             PreparedStatement ps = db.prepareStatement(statement);
