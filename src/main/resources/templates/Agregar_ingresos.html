@@ -1,23 +1,22 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Banco XYZ - Mis Finanzas</title>
-
-  <link rel="stylesheet" type="text/css" href="../css/Agregar_ingreso.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco XYZ - Mis Finanzas</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/Agregar_ingreso.css}">
 </head>
 <body>
-  <header>
+<header>
     <div class="header-left">
-      <span>Mis Finanzas</span>
+        <span>Mis Finanzas</span>
     </div>
     <div class="header-right">
-      <span>Hola, Usuario</span>
+        <span>Hola, Usuario</span>
     </div>
-  </header>
-  
-  <main>
+</header>
+
+<main>
     <nav>
         <ul>
             <li><a href="resumen.html">Resumen</a></li>
@@ -26,46 +25,44 @@
             <li><a href="cuentas.html">Cuentas</a></li>
             <li><a href="categorias.html">Categorías</a></li>
             <li><a href="configuracion.html">Configuración</a></li>
-        </ul>        
+        </ul>
     </nav>
     <section class="formulario">
-    
+
         <h2>Agregar Ingreso</h2>
-    
-        <form>
+
+        <form th:action="@{/agregarIngreso}" method="post">
             <div class="form-group">
-              <label for="monto">Monto</label>
-              <input type="text" id="monto" placeholder="Ingrese Monto" required>
+                <label for="monto">Monto</label>
+                <input type="text" id="monto" placeholder="Ingrese Monto" required th:field="${ingreso.monto}">
             </div>
             <div class="form-group">
-              <label for="Descripcion">Descripcion</label>
-              <input type="text" id="Descripcion" placeholder=" Ingrese Descripcion" required>
-            </div> 
+                <label for="Descripcion">Descripcion</label>
+                <input type="text" id="Descripcion" placeholder=" Ingrese Descripcion" required th:field="${ingreso.descripcion}">
+            </div>
             <div class="form-group">
                 <label for="Fecha">Fecha</label>
-                <input type="text" id="Fecha" placeholder="Ingrese Fecha" required>
-              </div> 
-              <div class="form-group">
-                <label for="Comentario">Comentario</label>
-                <input type="text" id="Comentario" placeholder="" required>
-              </div>
-              <div class="form-group">
-                <label for="Categoria ">Categoria</label>
-                <input type="text" id="categoria" placeholder="" required>
-              </div>
-              <div class="form-group">
-                <label for="Cuenta">Cuenta</label>
-                <input type="text" id="Cuenta" placeholder="" required>
-              </div>
-            <div class="button-container">
-              <button type="submit">
-                <a>Añadir</a>
-            </button>
+                <input type="text" id="Fecha" placeholder="Ingrese Fecha" required th:field="${ingreso.fecha}">
             </div>
-          </form>
-          
-      </section>
-      <script src="js/script.js"></script>
-    </main>
+            <div class="form-group">
+                <label for="Comentario">Comentario</label>
+                <input type="text" id="Comentario" placeholder="" required th:field="${ingreso.comentario}">
+            </div>
+            <div class="form-group">
+                <label for="Categoria">Categoria</label>
+                <input type="text" id="categoria" placeholder="" required th:field="${ingreso.categoria}">
+            </div>
+            <div class="form-group">
+                <label for="Cuenta">Cuenta</label>
+                <input type="text" id="Cuenta" placeholder="" required th:field="${ingreso.cuenta}">
+            </div>
+            <div class="button-container">
+                <button type="submit">Añadir</button>
+            </div>
+        </form>
+
+    </section>
+    <script src="js/script.js"></script>
+</main>
 </body>
 </html>

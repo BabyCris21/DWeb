@@ -6,10 +6,10 @@
 </head>
 <body>
 <h1>Usuarios:</h1>
-  <section th:each="usuario: ${usuarios}">
-      <h2 th:text="${'Id: ' + usuario.Id}"></h2>
-      <p th:text="${'Nombre completo: ' + usuario.Nombre + ' ' + usuario.Apellido}">Usuario: </p>
-      <p th:text="${'Correo ' +usuario.Correo}"></p>
-  </section>
+<section th:each="usuario : ${usuarios}">
+    <h2 th:text="|Id: ${usuario.id}|"></h2>
+    <p th:text="|Nombre completo: ${usuario.nombre} ${usuario.apellido}|"></p>
+    <p th:text="|Correo: ${usuario.correo}|"></p>
+</section>
 </body>
 </html>

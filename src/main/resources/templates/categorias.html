@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Banco XYZ - Mis Finanzas</title>
-  <link rel="stylesheet" type="text/css" href="../css/categorias.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco XYZ - Mis Finanzas</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/categorias.css}">
 </head>
+
 <body>
-  <header>
+<header>
     <div class="header-left">
-      <span>Mis Finanzas</span>
+        <span>Mis Finanzas</span>
     </div>
     <div class="header-right">
-      <span>Hola, Usuario</span>
+        <span>Hola, Usuario</span>
     </div>
-  </header>
-  
-  <main>
+</header>
+
+<main>
     <nav>
         <ul>
             <li><a href="resumen.html">Resumen</a></li>
@@ -25,34 +26,30 @@
             <li><a href="cuentas.html">Cuentas</a></li>
             <li><a href="categorias.html" class="active">Categorías</a></li>
             <li><a href="configuracion.html">Configuración</a></li>
-        </ul>        
+        </ul>
     </nav>
 
     <section class="formulario">
-    
-        <h2>Agregar categoria</h2>
-    
-        <form>
+
+        <h2>Agregar categoría</h2>
+
+        <form th:action="@{/agregarCategoria}" method="post">
             <div class="form-group">
-              <label for="nombre">Nombre</label>
-              <input type="text" id="nombre" placeholder="Nombre" required>
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" placeholder="Nombre" required name="nombre">
             </div>
             <div class="form-group">
-              <label for="apellido">Descripcion</label>
-              <input type="text" id="apellido" placeholder="Descripcion" required>
+                <label for="descripcion">Descripción</label>
+                <input type="text" id="descripcion" placeholder="Descripción" required name="descripcion">
             </div>
             <div class="button-container">
-              <button type="submit">
-                <a>Añadir</a>
-            </button>
+                <button type="submit">Añadir</button>
             </div>
-          </form>
-          
-      </section>
-      
-      <script src="js/script.js"></script>
-      </main>
-    </body>
-    </html>
-    
-    
+        </form>
+
+    </section>
+
+    <script src="js/script.js"></script>
+</main>
+</body>
+</html>
