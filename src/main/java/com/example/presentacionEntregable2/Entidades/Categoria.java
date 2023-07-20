@@ -1,6 +1,6 @@
 package com.example.presentacionEntregable2.Entidades;
 
-import java.util.Date;
+
 
 public class Categoria {
     int Id;

@@ -5,15 +5,15 @@ import java.util.Date;
 public class Cuenta {
     int id;
     int idUsuario;
-    String mombre;
+    String nombre;
     String descripcion;
     int activo;
     String fechaCreacion;
 
-    public Cuenta(int id, int idUsuario, String mombre, String descripcion, int activo, String fechaCreacion) {
+    public Cuenta(int id, int idUsuario, String nombre, String descripcion, int activo, String fechaCreacion) {
         this.id = id;
         this.idUsuario = idUsuario;
-        this.mombre = mombre;
+        this.nombre = nombre;
         this.descripcion = descripcion;
         this.activo = activo;
         this.fechaCreacion = fechaCreacion;
@@ -36,11 +36,11 @@ public class Cuenta {
     }
 
     public String getMombre() {
-        return mombre;
+        return nombre;
     }
 
     public void setMombre(String mombre) {
-        this.mombre = mombre;
+        this.nombre = mombre;
     }
 
     public String getDescripcion() {
