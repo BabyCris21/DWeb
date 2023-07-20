@@ -12,14 +12,17 @@ public class DatabaseConnection {
 
     private static Connection connection;
 
+    private DatabaseConnection() {
+    }
+
     public static Connection getInstancia() throws SQLException {
-        if (connection == null || connection.isClosed()){
+        if (connection == null || connection.isClosed()) {
             connection = DriverManager.getConnection(url, username, password);
         }
         return connection;
     }
 
-    public static void cerrarConexion(){
+    public static void cerrarConexion() {
         try {
             if (connection != null && !connection.isClosed()) {
                 connection.close();
@@ -29,4 +32,3 @@ public class DatabaseConnection {
         }
     }
 }
-
