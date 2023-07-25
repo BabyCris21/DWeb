@@ -118,24 +118,20 @@ public class UsuarioRepositorio implements IRepositorio<Usuario> {
 
     @Override
     public void Actualizar(Usuario objeto) {
-
-        /*String procedure = "UPDATE usuario Set correo   WHERE id = ?";
+        String procedure = "UPDATE usuario SET correo=?, nombres=?, apellidos=?, telefono=? WHERE id=?;";
         try {
             PreparedStatement cs = db.prepareStatement(procedure);
-            cs.setInt(1, objeto.getId());
-            cs.setInt(2, objeto.getIdusuarioCuenta());
-            cs.setInt(3, objeto.getIdmovimientoTipo());
-            cs.setInt(4, objeto.getIdmovimientoCategoria());
-            cs.setString(5, objeto.getNombre());
-            cs.setInt(6, objeto.getActivo());
-            cs.setString(7, objeto.getFechaCreacion());
-            ResultSet rs = cs.executeQuery();
-            rs.close();
+            cs.setString(1, objeto.getCorreo());
+            cs.setString(2, objeto.getNombre());
+            cs.setString(3, objeto.getApellido());
+            cs.setString(4, objeto.getTelefono());
+            cs.setInt(5, objeto.getId());
+            cs.executeUpdate();
             cs.close();
         } catch (SQLException e) {
-            Logger.getLogger(MovimientoRepositorio.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(UsuarioRepositorio.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             DatabaseConnection.cerrarConexion();
-        }*/
+        }
     }
 }

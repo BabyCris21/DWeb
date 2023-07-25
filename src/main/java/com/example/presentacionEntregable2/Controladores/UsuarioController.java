@@ -6,6 +6,9 @@ import com.example.presentacionEntregable2.Repositorios.UsuarioRepositorio;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UsuarioController {
@@ -13,6 +16,7 @@ public class UsuarioController {
     UsuarioController(){
         _usuarioRepositorio = new UsuarioRepositorio();
     }
+
     @GetMapping("/usuarios")
     public String listar(Model model) {
         var usuarios = _usuarioRepositorio.Listar();
@@ -25,6 +29,26 @@ public class UsuarioController {
         var usuarios = _usuarioRepositorio.Listar();
         model.addAttribute("usuarios", usuarios);
         return "usuario.lista";
+    }
+
+    @GetMapping("/editarUsuario")
+    public String editarUsuario(@RequestParam int id, Model model) {
+        Usuario usuario = _usuarioRepositorio.ObtenerPorId(id);
+        model.addAttribute("usuario", usuario);
+        return "usuario.editar";
+    }
+
+    @PostMapping("/eliminarUsuario")
+    public String eliminarUsuario(@RequestParam int id, Model model) {
+        Usuario usuario = _usuarioRepositorio.ObtenerPorId(id);
+        _usuarioRepositorio.Eliminar(usuario);
+        return "redirect:/usuarios";
+    }
+
+    @PostMapping("/actualizarUsuario")
+    public String actualizarUsuario(@ModelAttribute Usuario usuario, Model model) {
+        _usuarioRepositorio.Actualizar(usuario);
+        return "redirect:/usuarios";
     }
 
     @GetMapping("/iniciosesion")

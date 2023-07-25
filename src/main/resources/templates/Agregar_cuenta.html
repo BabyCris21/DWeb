@@ -1,23 +1,22 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Banco XYZ - Mis Finanzas</title>
-
-  <link rel="stylesheet" type="text/css" href="../css/Agregar_cuenta.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco XYZ - Mis Finanzas</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/Agregar_cuenta.css}">
 </head>
 <body>
-  <header>
+<header>
     <div class="header-left">
-      <span>Mis Finanzas</span>
+        <span>Mis Finanzas</span>
     </div>
     <div class="header-right">
-      <span>Hola, Usuario</span>
+        <span>Hola, Usuario</span>
     </div>
-  </header>
-  
-  <main>
+</header>
+
+<main>
     <nav>
         <ul>
             <li><a href="resumen.html">Resumen</a></li>
@@ -26,31 +25,29 @@
             <li><a href="cuentas.html" class="active">Cuentas</a></li>
             <li><a href="categorias.html">Categorías</a></li>
             <li><a href="configuracion.html">Configuración</a></li>
-        </ul>        
+        </ul>
     </nav>
     <section class="formulario">
-    
+
         <h2>Agregar Cuenta</h2>
-    
-        <form>
+
+        <form th:action="@{/agregarCuenta}" method="post">
             <div class="form-group">
-              <label for="Nom">Nombre</label>
-              <input type="text" id="Nom" placeholder="Ingrese Nombre" required>
+                <label for="Nom">Nombre</label>
+                <input type="text" id="Nom" placeholder="Ingrese Nombre" th:field="${cuenta.nombre}" required>
             </div>
             <div class="form-group">
-              <label for="Descripcion">Descripcion</label>
-              <input type="text" id="Descripcion" placeholder=" Ingrese Descripcion" required>
-            </div> 
-            
+                <label for="Descripcion">Descripcion</label>
+                <input type="text" id="Descripcion" placeholder=" Ingrese Descripcion" th:field="${cuenta.descripcion}" required>
+            </div>
+
             <div class="button-container">
-              <button type="submit">
-                <a>Añadir</a>
-            </button>
+                <button type="submit">Añadir</button>
             </div>
-          </form>
-          
-      </section>
-      <script src="js/script.js"></script>
-    </main>
+        </form>
+
+    </section>
+    <script src="js/script.js"></script>
+</main>
 </body>
 </html>

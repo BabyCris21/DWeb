@@ -1,46 +1,47 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Banco XYZ - Mis Finanzas</title>
-  <link rel="stylesheet" type="text/css" href="../css/egresos.css">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/egresos.css}">
 </head>
 <body>
-  <header>
-    <div class="header-left">
-      <span>Mis Finanzas</span>
-    </div>
-    <div class="header-right">
-      <span>Hola, Usuario</span>
-    </div>
-  </header>
-  
-  <main>
-    <nav>
-      <ul>
-        <li><a href="resumen.html">Resumen</a></li>
-        <li><a href="ingresos.html">Ingresos</a></li>
-        <li><a href="egresos.html" class="active">Egresos</a></li>
-        <li><a href="cuentas.html">Cuentas</a></li>
-        <li><a href="categorias.html">Categorías</a></li>
-        <li><a href="configuracion.html">Configuración</a></li>
-      </ul>
-    </nav>
-<section>
-  <h2>Egresos: $3000</h2>
+<header>
+  <div class="header-left">
+    <span>Mis Finanzas</span>
+  </div>
+  <div class="header-right">
+    <span>Hola, Usuario</span>
+  </div>
+</header>
+
+<main>
+  <nav>
+    <ul>
+      <li><a href="resumen.html">Resumen</a></li>
+      <li><a href="ingresos.html">Ingresos</a></li>
+      <li><a href="egresos.html" class="active">Egresos</a></li>
+      <li><a href="cuentas.html">Cuentas</a></li>
+      <li><a href="categorias.html">Categorías</a></li>
+      <li><a href="configuracion.html">Configuración</a></li>
+    </ul>
+  </nav>
+  <section>
+    <h2>Egresos: $3000</h2>
     <div class="options" >
-      <a href="Agregar_Egreso.html">Agregar</a>
+      <a th:href="@{/html/Agregar_Egreso.html}">Agregar</a>
     </div>
     <h2>Categorías: </h2>
-      <h3>Comida: S/ 1500</h3> 
-      
-      <h3> Salidas: S/ 500 </h3> 
-      
-      <h3> Hijos: S/ 1000 </h3> 
-      
-      <h2>Detalles: </h2>
-      <h3>Descripcion - Categoria: S/ 3500</h3>
-      <h3>Pago Mensual - Renta casa playa: S/ 1500</h3>
-      <h3>Descripcion - Categoria: S/ 3500</h3>
-</section>   
+    <h3>Comida: S/ 1500</h3>
+    <h3>Salidas: S/ 500</h3>
+    <h3>Hijos: S/ 1000</h3>
+
+    <h2>Detalles: </h2>
+    <h3>Descripcion - Categoria: S/ 3500</h3>
+    <h3>Pago Mensual - Renta casa playa: S/ 1500</h3>
+    <h3>Descripcion - Categoria: S/ 3500</h3>
+  </section>
+</main>
+</body>
+</html>

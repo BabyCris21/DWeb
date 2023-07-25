@@ -1,29 +1,33 @@
 package com.example.presentacionEntregable2.Repositorios;
 
 import com.example.presentacionEntregable2.Entidades.Categoria;
+import com.example.presentacionEntregable2.Entidades.Cuenta;
 import com.example.presentacionEntregable2.Repositorios.Interfaces.IRepositorio;
 import com.example.presentacionEntregable2.Util.DatabaseConnection;
-import com.microsoft.sqlserver.jdbc.ISQLServerStatement;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CategoriaRepositorio implements IRepositorio<Categoria> {
+public class CuentaRepositorio implements IRepositorio<Cuenta> {
+
     private final Connection db;
-    public CategoriaRepositorio(){
+    public CuentaRepositorio(){
         try {
             this.db = DatabaseConnection.getInstancia();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
     @Override
-    public List<Categoria> Listar() {
-        String statement = "SELECT id, idusuario, nombre, activo, fechaCreacion FROM usuario_movimiento_categoria where activo=1;";
-        List<Categoria> categorias = new ArrayList<>();
+    public List<Cuenta> Listar() {
+        String statement = "SELECT id, idusuario, nombre, activo, descripcion, fechaCreacion FROM usuario_cuenta_categoria where activo=1;";
+        List<Cuenta> cuentas = new ArrayList<>();
         try {
             PreparedStatement ps = db.prepareStatement(statement);
             ResultSet rs = ps.executeQuery();
@@ -32,8 +36,9 @@ public class CategoriaRepositorio implements IRepositorio<Categoria> {
                 int idusuario = rs.getInt("idusuario");
                 int activo = rs.getInt("activo");
                 String nombre = rs.getString("nombre");
+                String descripcion = rs.getString("descripcion");
                 String date = rs.getString("fechaCreacion");
-                categorias.add(new Categoria(id, idusuario, activo, nombre, date));
+                cuentas.add(new Cuenta(id, idusuario, nombre, descripcion, activo, date));
             }
             rs.close();
             ps.close();
@@ -42,76 +47,88 @@ public class CategoriaRepositorio implements IRepositorio<Categoria> {
         } finally {
             DatabaseConnection.cerrarConexion();
         }
-        return categorias;
-
+        return cuentas;
     }
 
     @Override
-    public Categoria ObtenerPorId(int id) {
-        Categoria categoria = null;
+    public Cuenta ObtenerPorId(int id) {
+        Cuenta cuentas = null;
         String procedure = "SELECT id, idusuario, nombre, activo, fechaCreacion FROM usuario_movimiento_categoria WHERE id = ? and activo=1;";
         try {
             PreparedStatement ps = db.prepareStatement(procedure);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-                int idcat = rs.getInt("id");
+                int idcue = rs.getInt("idcuenta");
                 int idusuario = rs.getInt("idusuario");
                 String nombre = rs.getString("nombre");
+                String descripcion = rs.getString("descripcion");
                 int activo = rs.getInt("activo");
                 String fechaCreacion = rs.getString("fechaCreacion");
-                categoria = new Categoria(idcat, idusuario, activo, nombre, fechaCreacion);
+                cuentas = new Cuenta(idcue, idusuario, nombre, descripcion,activo, fechaCreacion);
             }
             rs.close();
             ps.close();
+        } catch (SQLException e) {
+            Logger.getLogger(CuentaRepositorio.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            DatabaseConnection.cerrarConexion();
+        }
+        return cuentas;
+    }
+
+    @Override
+    public void Crear(Cuenta objeto) {
+
+        String procedure = "INSERT INTO usuario_cuenta_categoria (id, nombre) VALUES (?,?);";
+
+        try{
+            PreparedStatement cs=db.prepareStatement(procedure);
+            cs.setInt(1,objeto.getId());
+            cs.setString(2, objeto.getMombre());
+            cs.execute();
+            cs.close();
+        }
+        catch (SQLException e) {
+            Logger.getLogger(CategoriaRepositorio.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            DatabaseConnection.cerrarConexion();
+        }
+    }
+
+    @Override
+    public Cuenta Eliminar(Cuenta objeto) {
+        String procedure = "DELETE FROM usuario_cuenta_categoria WHERE id = ?;";
+
+        try {
+            PreparedStatement cs = db.prepareStatement(procedure);
+            cs.setInt(1, objeto.getId());
+            cs.executeUpdate();
+            cs.close();
         } catch (SQLException e) {
             Logger.getLogger(CategoriaRepositorio.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             DatabaseConnection.cerrarConexion();
         }
-        return categoria;
-    }
-    @Override
-    public void Crear(Categoria objeto) {
-            String procedure = "INSERT INTO usuario_movimiento_categoria (idusuario, nombre) VALUES (?,?);";
-        try {
-            PreparedStatement cs = db.prepareStatement(procedure);
-            cs.setInt(1, objeto.getIdUsuario());
-            cs.setString(2, objeto.getNombre());
-            cs.execute();
-            cs.close();
-            } catch (SQLException e) {
-                Logger.getLogger(CategoriaRepositorio.class.getName()).log(Level.SEVERE, null, e);
-            } finally {
-                DatabaseConnection.cerrarConexion();
-            }
-    }
 
-    @Override
-    public Categoria Eliminar(Categoria objeto) {
-        String procedure = "UPDATE usuario_movimiento_categoria SET activo=0 WHERE id=?;";
-        try (PreparedStatement cs = db.prepareStatement(procedure)) {
-            cs.setInt(1, objeto.getId());
-            cs.executeUpdate();
-        } catch (SQLException e) {
-            Logger.getLogger(CategoriaRepositorio.class.getName()).log(Level.SEVERE, null, e);
-        }
         return objeto;
     }
 
+
     @Override
-    public void Actualizar(Categoria objeto) {
-            String procedure = "UPDATE usuario_movimiento_categoria Set nombre=?  WHERE id = ?";
-            try {
-                PreparedStatement cs = db.prepareStatement(procedure);
-                cs.setString(1, objeto.getNombre());
-                cs.setInt(2, objeto.getId());
-                cs.execute();
-                cs.close();
-            } catch (SQLException e) {
-                Logger.getLogger(CategoriaRepositorio.class.getName()).log(Level.SEVERE, null, e);
-            } finally {
-                DatabaseConnection.cerrarConexion();
-            }
+    public void Actualizar(Cuenta objeto) {
+        String procedure = "UPDATE usuario_cuenta_categoria SET nombre = ? WHERE id = ?;";
+
+        try {
+            PreparedStatement cs = db.prepareStatement(procedure);
+            cs.setString(1, objeto.getMombre());
+            cs.setInt(2, objeto.getId());
+            cs.executeUpdate();
+            cs.close();
+        } catch (SQLException e) {
+            Logger.getLogger(CategoriaRepositorio.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            DatabaseConnection.cerrarConexion();
+        }
     }
 }

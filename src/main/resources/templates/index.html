@@ -1,33 +1,33 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Banco XYZ</title>
-  <link rel="stylesheet" type="text/css" href="./css/styles.css">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}">
 </head>
 <body>
-  <header>
-    <h1>Mis Finanzas</h1>
-  </header>
-  
-  <section class="login">
-    <h2>Iniciar sesión</h2>
-    <form th:action="@{/iniciarSesion}" th:object="${usuario}" method="post">
-      <input type="text" placeholder="Correo" th:field="$*{correo}" required>
-      <input type="password" placeholder="Contraseña" required th:field="$*{contrasena}">
-      <button type="submit">
-        Iniciar sesión
-      </button>
-      <div class="options">
-        <a href="crear.html">Crear usuario</a> | 
-        <a href="recuperar.html">Recuperar contraseña</a>
-      </div>
-    </form>
-  </section>
-  
-  <footer>
-    <p>&copy; 2023 Mis Finanzas. Todos los derechos reservados.</p>
-  </footer>
+<header>
+  <h1>Mis Finanzas</h1>
+</header>
+
+<section class="login">
+  <h2>Iniciar sesión</h2>
+  <form th:action="@{/iniciarSesion}" th:object="${usuario}" method="post">
+    <input type="text" placeholder="Correo" th:field="*{correo}" required>
+    <input type="password" placeholder="Contraseña" required th:field="*{contrasena}">
+    <button type="submit">
+      Iniciar sesión
+    </button>
+    <div class="options">
+      <a href="crear.html">Crear usuario</a> |
+      <a href="recuperar.html">Recuperar contraseña</a>
+    </div>
+  </form>
+</section>
+
+<footer>
+  <p>&copy; 2023 Mis Finanzas. Todos los derechos reservados.</p>
+</footer>
 </body>
 </html>
