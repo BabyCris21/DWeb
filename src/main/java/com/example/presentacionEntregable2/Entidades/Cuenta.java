@@ -1,14 +1,22 @@
 package com.example.presentacionEntregable2.Entidades;
 
-import java.util.Date;
 
-public class Cuenta {
-    int id;
-    int idUsuario;
-    String mombre;
-    String descripcion;
-    int activo;
-    String fechaCreacion;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import java.io.Serializable;
+
+@Entity
+@Table(name="cuenta")
+public class Cuenta  implements Serializable {
+    @Id
+   private int id;
+   private int idUsuario;
+   private String mombre;
+   private String descripcion;
+     private int activo;
+    private String fechaCreacion;
+
 
     public Cuenta(int id, int idUsuario, String mombre, String descripcion, int activo, String fechaCreacion) {
         this.id = id;
@@ -17,6 +25,7 @@ public class Cuenta {
         this.descripcion = descripcion;
         this.activo = activo;
         this.fechaCreacion = fechaCreacion;
+
     }
 
     public int getId() {
